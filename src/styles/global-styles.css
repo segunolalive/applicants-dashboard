@@ -1,0 +1,9 @@
+@import './resets.css';
+@import './screen-reader.css';
+@import './variables.css';
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--grey-500);
+  font-size: 1rem;
+}

@@ -1,0 +1,27 @@
+.app {
+  display: flex;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow-x: auto;
+  padding-left: 1rem;
+}
+
+.app > * {
+  margin-right: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .app {
+    display: grid;
+    width: 100%;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+    overflow: unset;
+    padding-left: 0;
+  }
+  .app > * {
+    margin-right: 0;
+  }
+}
