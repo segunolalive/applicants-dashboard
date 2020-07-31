@@ -20,7 +20,7 @@ export default function Header() {
         <nav aria-label="primary">
           <ul className={style.nav}>
             <IconButton type={IconType.Menu} onClick={toggleSidebar}>
-              <SRText>{open ? 'close' : 'open'} sidebar</SRText>
+              <SRText>{open ? 'close sidebar' : 'open sidebar'}</SRText>
             </IconButton>
             <Link to="/" className={style.logo}>
               <Logo />

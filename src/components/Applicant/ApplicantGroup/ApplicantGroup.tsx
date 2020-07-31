@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Applicant from '../Applicant'
+import { useTranslation } from 'react-i18next'
 
 import { applicantProps, applicantStatus } from 'models/types'
 import { APPLICANT_STATUSES } from 'utils'
@@ -12,10 +13,11 @@ type Prop = {
 }
 
 export default function ApplicantGroup({ group, applicants }: Prop) {
+  const { t } = useTranslation()
   return (
     <section className={style.group}>
       <h2 className={style.heading}>
-        {APPLICANT_STATUSES[group]} ({applicants.length})
+        {t(`${APPLICANT_STATUSES[group]} (${applicants.length})`)}
       </h2>
       <div className={style.grid}>
         {applicants.map((applicant) => (

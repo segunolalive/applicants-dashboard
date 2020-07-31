@@ -31,3 +31,9 @@
   font-size: 0.875rem;
   line-height: 1.57;
 }
+
+.languages {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+}

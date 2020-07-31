@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import Header from 'components/Header'
 import Container from 'components/Container'
+import LanguageToggle from 'components/LanguageToggle'
 
 import style from './layout.module.css'
 
@@ -17,7 +18,12 @@ export default function Layout({ children }: Props) {
         <Container className={style.container}>{children}</Container>
       </main>
       <Container>
-        <footer className={style.footer}>AGB • Datenschutz • Impressum</footer>
+        <footer className={style.footer}>
+          <span>AGB • Datenschutz • Impressum</span>
+          <div className={style.languages}>
+            <LanguageToggle />
+          </div>
+        </footer>
       </Container>
     </div>
   )
