@@ -10,7 +10,11 @@
   text-transform: uppercase;
 }
 
-.appointment {
+.label[data-label-type="bid"] {
+  background-color: var(--yellow-400);
+}
+
+.applicant {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,10 +26,18 @@
   line-height: 1.5;
 }
 
-.appointment * {
+.applicant > * {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.applicant p {
   margin: 0;
 }
 
 .name {
   font-weight: bold;
+}
+
+.info {
 }

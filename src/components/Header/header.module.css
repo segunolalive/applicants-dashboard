@@ -1,0 +1,69 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.nav .logo {
+  margin: 0;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+}
+
+.mobile {
+  display: block;
+  width: 100%;
+}
+
+.mobile a {
+  margin: 0;
+}
+
+.mobile button {
+  border: none;
+  padding-left: 0;
+}
+
+.desktop {
+  display: none;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: block;
+  }
+}
+
+.drawer {
+  display: flex;
+  align-items: center;
+}
+
+.drawer > :first-child {
+  margin: 0 1.5rem 0 -1rem;
+  border: none;
+}
+
+.support {
+  font-weight: bold;
+  text-decoration: none;
+  color: currentColor;
+}
+
+.support span {
+  margin-left: 10px;
+}

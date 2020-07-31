@@ -1,20 +1,22 @@
 import * as React from 'react'
 
+import { colorsMap } from 'utils'
+
 import style from './avatar.module.css'
 
 interface Props {
-  fullname: string
-  color: string
+  initials: string
 }
 
-export default function Avatar({ fullname, color }: Props): React.ReactElement {
-  const [firstName = '', lastName = ''] = fullname.split(' ')
-  const firstInitial = firstName ? firstName[0] : ''
-  const secondInitial = lastName ? lastName[0] : ''
-  const initials = `${firstInitial}${secondInitial}`.toUpperCase()
+export default function Avatar({ initials }: Props): React.ReactElement {
+  const colorIndex = Math.floor(colorsMap.length * Math.random())
+  const colors = colorsMap[colorIndex]
 
   return (
-    <div className={style.avatar} style={{ backgroundColor: color }}>
+    <div
+      className={style.avatar}
+      style={{ backgroundColor: colors[0], color: colors[1] }}
+    >
       {initials}
     </div>
   )

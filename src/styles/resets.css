@@ -83,3 +83,8 @@ button:-moz-focusring,
 [type='submit']:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+}

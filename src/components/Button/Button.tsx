@@ -7,10 +7,13 @@ import style from './button.module.css'
 interface Props {
   onClick: (event: React.SyntheticEvent) => void
   children?: React.ReactNode
+  className?: string
 }
 
-export default function Button({ onClick, children }: Props) {
+export default function Button({ children , ...props}: Props) {
   return (
-    <button className={style.button} onClick={onClick}>{children}</button>
+    <button className={style.button} {...props}>
+      {children}
+    </button>
   )
 }

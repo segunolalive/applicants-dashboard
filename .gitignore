@@ -37,3 +37,5 @@ Thumbs.db# See https://help.github.com/articles/ignoring-files/ for more about i
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.env

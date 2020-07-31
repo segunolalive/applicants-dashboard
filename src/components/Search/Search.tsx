@@ -1,36 +1,51 @@
 import * as React from 'react'
 
+import SRText from 'components/SRText'
+
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg'
 
 import style from './search.module.css'
 
-interface Props {
-  value?: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+type Props = {
+  initialValue?: string
+  searchFn: (text: string) => void
 }
+type submit = (event: React.FormEvent<HTMLInputElement>) => void
 
-export default function Search({ onChange }: Props) {
-  const [value, setValue] = React.useState('')
+export default function Search({ initialValue = '', searchFn }: Props) {
+  const [value, setValue] = React.useState(initialValue)
+
+  const handleSubmit = (
+    event: React.FormEvent<HTMLInputElement | HTMLFormElement>
+  ) => {
+    event.preventDefault()
+    searchFn(value)
+  }
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value)
+  }
+
   return (
-    <div className={style.searchContainer}>
+    <form className={style.searchContainer} onSubmit={handleSubmit}>
       <label htmlFor="search" className={style.label}>
-        Search for applicant
+        <SearchIcon
+          className={style.searchIcon}
+          focusable="false"
+          aria-hidden="true"
+        />
+        <SRText>Search for applicant</SRText>
       </label>
-      <SearchIcon
-        className={style.searchIcon}
-        focusable="false"
-        aria-hidden="true"
-      />
       <input
         type="text"
         inputMode="search"
-        // value={value}
+        value={value}
         id="search"
         onChange={onChange}
-        // onChange={(e) => {setValue(e.target.value)}}
+        onBlur={handleSubmit}
         className={style.searchInput}
         placeholder="Search for applicant"
       />
-    </div>
+    </form>
   )
 }

@@ -9,11 +9,12 @@ interface Props {
   onClick: (event: React.SyntheticEvent) => void
   children?: React.ReactNode
   type: IconType
+  className?: string
 }
 
-export default function IconButton({ children, type, onClick }: Props) {
+export default function IconButton({ children, type, ...props }: Props) {
   return (
-    <Button onClick={onClick}>
+    <Button {...props}>
       {children}
       <Icon type={type} />
     </Button>
