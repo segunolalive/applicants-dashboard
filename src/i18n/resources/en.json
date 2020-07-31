@@ -1,0 +1,21 @@
+{
+  "translation": {
+    "applicants": "applicants",
+    "bids": "bids",
+    "status": "status",
+    "new": "new",
+    "total": "total",
+    "viewed": "viewed",
+    "appointment": "appointment",
+    "others": "others",
+    "offer accepted": "offer accepted",
+    "property viewed ": "property viewed ",
+    "interested": "interested",
+    "contact support": "contact support",
+    "messages": "messages",
+    "profile": "profile",
+    "logout": "logout",
+    "go back":"go back"
+  }
+  
+}

@@ -1,0 +1,20 @@
+{
+  "translation": {
+    "applicants": "bewerber",
+    "bids": "gebote",
+    "status": "status",
+    "new": "neu",
+    "total": "gesamt",
+    "viewed": "angesehen",
+    "appointment": "geplanter Termin",
+    "others": "andere",
+    "offer accepted": "angebot angenommen",
+    "property viewed": "eigenschaft angesehen",
+    "interested": "interessiert",
+    "contact support": "kontaktieren sie support",
+    "messages": "mitteilungen",
+    "profile": "profil",
+    "logout": "ausloggen",
+    "go back": "geh zurück"
+  }
+}

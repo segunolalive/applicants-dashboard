@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import IconButton from 'components/IconButton'
 import SRText from 'components/SRText'
@@ -17,28 +18,29 @@ type SummaryProps = {
 }
 
 export default function ApplicantHeader({ total, groups }: HeaderProps) {
+  const { t } = useTranslation()
   return (
     <div className={style.header}>
       <div className={style.title}>
         <IconButton type={IconType.Back} onClick={() => {}}>
-          <SRText>go back</SRText>
+          <SRText>{t('go back')}</SRText>
         </IconButton>
-        <h1>Applicants</h1>
+        <h1>{t('applicants')}</h1>
       </div>
       <div className={style.summaries}>
-        <ApplicantSummary count={total} label="Total" />
-        <ApplicantSummary count={groups.Interested?.length} label="New" />
+        <ApplicantSummary count={total} label="total" />
+        <ApplicantSummary count={groups.Interested?.length} label="new" />
         <ApplicantSummary
           count={groups.Property_Viewed?.length}
-          label="Viewed"
+          label="viewed"
         />
         <ApplicantSummary
           count={groups.Appointment_Set?.length}
-          label="Appointment"
+          label="appointment"
         />
         <ApplicantSummary
           count={groups.Offer_Accepted?.length}
-          label="Others"
+          label="others"
         />
       </div>
     </div>
@@ -46,10 +48,11 @@ export default function ApplicantHeader({ total, groups }: HeaderProps) {
 }
 
 function ApplicantSummary({ count = 0, label }: SummaryProps) {
+  const { t } = useTranslation()
   return (
     <div className={style.summary}>
       <b>{count}</b>
-      <span>{label}</span>
+      <span>{t(label)}</span>
     </div>
   )
 }

@@ -27,10 +27,10 @@ export default function ApplicantsPage({
 
   React.useEffect(() => {
     const queryParams = qs.parse(location.search)
-    queryParams.search = searchText
+    queryParams.search = debouncedText
     const newQueryString = qs.stringify(queryParams)
     history.replace(`?${newQueryString}`)
-  }, [debouncedText])
+  }, [debouncedText, location.search])
 
   const applicantsByStatus: Record<
     applicantStatus,

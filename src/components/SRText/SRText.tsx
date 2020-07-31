@@ -6,6 +6,6 @@ interface Props {
   children: React.ReactNode
 }
 
-export default function SRText({ children }: Props) {
+export default function SRText ({ children }: Props) {
   return <span className={style.srText}>{children}</span>
 }
