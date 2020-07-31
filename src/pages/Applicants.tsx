@@ -8,7 +8,7 @@ import {
   ApplicantHeader,
 } from 'components/Applicant'
 import Layout from 'components/Layout'
-import { useApplicantData } from 'hooks'
+import { useApplicantData, useDebouncedValue } from 'hooks'
 
 import { applicantProps, applicantStatus } from 'models/types'
 import { groupByStatus, REQUEST_STATUSES } from 'utils'
@@ -21,19 +21,22 @@ export default function ApplicantsPage({
   const defaultText = typeof search === 'string' ? search : ''
   const [searchText, setSearchText] = React.useState(defaultText)
 
-  const { status, data: applicants } = useApplicantData(searchText)
+  const deboundedText = useDebouncedValue(searchText, 500)
 
-  const applicantsByStatus: Record<
-    applicantStatus,
-    applicantProps[]
-  > = groupByStatus(applicants as applicantProps[])
+  const { status, data: applicants } = useApplicantData(deboundedText)
 
   React.useEffect(() => {
     const queryParams = qs.parse(location.search)
     queryParams.search = searchText
     const newQueryString = qs.stringify(queryParams)
     history.replace(`?${newQueryString}`)
-  }, [searchText])
+  }, [deboundedText])
+
+
+  const applicantsByStatus: Record<
+    applicantStatus,
+    applicantProps[]
+  > = groupByStatus(applicants as applicantProps[])
 
   return (
     <Layout>
@@ -44,7 +47,9 @@ export default function ApplicantsPage({
         <div>Oops! There was an Error.</div>
       ) : null}
 
-      {status !== REQUEST_STATUSES.LOADING && applicants.length === 0 ? <div>No Applicants Found</div> : null}
+      {status !== REQUEST_STATUSES.LOADING && applicants.length === 0 ? (
+        <div>No Applicants Found</div>
+      ) : null}
 
       {![REQUEST_STATUSES.ERROR, REQUEST_STATUSES.LOADING].includes(status)
         ? Object.entries(

@@ -25,7 +25,7 @@ app.get('/applicants', (req, res) => {
     data = db.filter((applicant) => {
       return (
         applicant.name.toLocaleLowerCase().includes(search.toLowerCase()) ||
-        applicant.email.toLocaleLowerCase().includes(search.toLowerCase())
+        applicant.email.split('@')[0].toLocaleLowerCase().includes(search.toLowerCase())
       )
     })
   }

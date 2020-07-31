@@ -17,7 +17,7 @@ export default function Avatar({ initials }: Props): React.ReactElement {
       className={style.avatar}
       style={{ backgroundColor: colors[0], color: colors[1] }}
     >
-      {initials}
+      {initials.toUpperCase()}
     </div>
   )
 }

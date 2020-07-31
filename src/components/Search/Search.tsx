@@ -13,21 +13,12 @@ type Props = {
 type submit = (event: React.FormEvent<HTMLInputElement>) => void
 
 export default function Search({ initialValue = '', searchFn }: Props) {
-  const [value, setValue] = React.useState(initialValue)
-
-  const handleSubmit = (
-    event: React.FormEvent<HTMLInputElement | HTMLFormElement>
-  ) => {
-    event.preventDefault()
-    searchFn(value)
-  }
-
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
+    searchFn(event.target.value)
   }
 
   return (
-    <form className={style.searchContainer} onSubmit={handleSubmit}>
+    <div className={style.searchContainer}>
       <label htmlFor="search" className={style.label}>
         <SearchIcon
           className={style.searchIcon}
@@ -39,13 +30,12 @@ export default function Search({ initialValue = '', searchFn }: Props) {
       <input
         type="text"
         inputMode="search"
-        value={value}
+        defaultValue={initialValue}
         id="search"
         onChange={onChange}
-        onBlur={handleSubmit}
         className={style.searchInput}
         placeholder="Search for applicant"
       />
-    </form>
+    </div>
   )
 }

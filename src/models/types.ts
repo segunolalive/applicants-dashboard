@@ -17,8 +17,7 @@ export type applicantStatus =
 
 export interface applicantProps {
   id: number
-  firstname: string
-  lastname: string
+  name: string
   phone: string
   email: string
   initials: string

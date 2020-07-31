@@ -9,8 +9,7 @@ import { formatDate } from 'utils'
 
 export default function Applicant(props: applicantProps) {
   const {
-    firstname,
-    lastname,
+    name,
     initials,
     phone,
     email,
@@ -29,7 +28,7 @@ export default function Applicant(props: applicantProps) {
       <Avatar initials={initials}></Avatar>
       <div className={style.info}>
         <p className={style.name}>
-          {firstname} {lastname}
+          {name}
         </p>
         <p>{phone}</p>
         <p>{email}</p>
