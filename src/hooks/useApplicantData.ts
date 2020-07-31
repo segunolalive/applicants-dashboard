@@ -10,7 +10,7 @@ export function useApplicantData(searchText = '') {
   const URL = searchText ? `/applicants?search=${searchText}` : `/applicants`
 
   const fetchApplicants = React.useCallback(
-    async function (signal: any) {
+    async function (signal: AbortSignal) {
       setStatus(REQUEST_STATUSES.LOADING)
       try {
         const response = await fetch(URL, { signal })
@@ -21,7 +21,9 @@ export function useApplicantData(searchText = '') {
         setStatus(REQUEST_STATUSES.SUCCESS)
         setData(jsonData)
       } catch (error) {
-        setStatus(REQUEST_STATUSES.ERROR)
+        if (!signal.aborted) {
+          setStatus(REQUEST_STATUSES.ERROR)
+        }
       }
     },
     [URL]
