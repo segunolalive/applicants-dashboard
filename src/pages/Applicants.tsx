@@ -21,17 +21,16 @@ export default function ApplicantsPage({
   const defaultText = typeof search === 'string' ? search : ''
   const [searchText, setSearchText] = React.useState(defaultText)
 
-  const deboundedText = useDebouncedValue(searchText, 500)
+  const debouncedText = useDebouncedValue(searchText, 500)
 
-  const { status, data: applicants } = useApplicantData(deboundedText)
+  const { status, data: applicants } = useApplicantData(debouncedText)
 
   React.useEffect(() => {
     const queryParams = qs.parse(location.search)
     queryParams.search = searchText
     const newQueryString = qs.stringify(queryParams)
     history.replace(`?${newQueryString}`)
-  }, [deboundedText])
-
+  }, [debouncedText])
 
   const applicantsByStatus: Record<
     applicantStatus,
@@ -44,14 +43,14 @@ export default function ApplicantsPage({
       <ApplicantFilters initialValue={searchText} searchFn={setSearchText} />
       {status === REQUEST_STATUSES.LOADING ? <div>... Loading ...</div> : null}
       {status === REQUEST_STATUSES.ERROR ? (
-        <div>Oops! There was an Error.</div>
+        <div>Oops! There was an Error. Try refreshing the page</div>
       ) : null}
 
-      {status !== REQUEST_STATUSES.LOADING && applicants.length === 0 ? (
+      {status === REQUEST_STATUSES.SUCCESS && applicants.length === 0 ? (
         <div>No Applicants Found</div>
       ) : null}
 
-      {![REQUEST_STATUSES.ERROR, REQUEST_STATUSES.LOADING].includes(status)
+      {status === REQUEST_STATUSES.SUCCESS
         ? Object.entries(
             applicantsByStatus
           ).map(([group, applicants]: any[]) => (

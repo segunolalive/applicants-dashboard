@@ -11,7 +11,7 @@ export function useDebouncedValue(value: any, delay = 0) {
     return () => {
       clearTimeout(handler)
     }
-  }, [value])
+  }, [value, delay])
 
   return debouncedValue
 }

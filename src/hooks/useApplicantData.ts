@@ -7,23 +7,25 @@ export function useApplicantData(searchText = '') {
   const [data, setData] = React.useState([])
   const abortRef: React.MutableRefObject<any> = React.useRef(null)
 
-  const URL = searchText
-    ? `/applicants?search=${searchText}`
-    : `/applicants`
+  const URL = searchText ? `/applicants?search=${searchText}` : `/applicants`
 
-  async function fetchApplicants(signal: any) {
-    setStatus(REQUEST_STATUSES.LOADING)
-    try {
-      const response = await fetch(URL, { signal })
-      const jsonData = await response.json()
-      setStatus(REQUEST_STATUSES.SUCCESS)
-      setData(jsonData)
-    } catch (error) {
-      setStatus(REQUEST_STATUSES.ERROR)
-    } finally {
-      setStatus(REQUEST_STATUSES.IDLE)
-    }
-  }
+  const fetchApplicants = React.useCallback(
+    async function (signal: any) {
+      setStatus(REQUEST_STATUSES.LOADING)
+      try {
+        const response = await fetch(URL, { signal })
+        if (!response.ok) {
+          throw new Error('Server Error')
+        }
+        const jsonData = await response.json()
+        setStatus(REQUEST_STATUSES.SUCCESS)
+        setData(jsonData)
+      } catch (error) {
+        setStatus(REQUEST_STATUSES.ERROR)
+      }
+    },
+    [URL]
+  )
 
   React.useEffect(() => {
     if (abortRef.current) {
@@ -36,7 +38,7 @@ export function useApplicantData(searchText = '') {
     return () => {
       controller.abort()
     }
-  }, [searchText])
+  }, [searchText, fetchApplicants])
 
   return { status, data }
 }
