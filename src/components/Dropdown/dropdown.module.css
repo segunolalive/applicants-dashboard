@@ -1,0 +1,21 @@
+.button {
+  display: inline-flex;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  border: var(--border-grey-100);
+  background-color: transparent;
+  color: inherit;
+  display: relative;
+}
+
+.button:focus-within {
+  /* for firefox */
+  outline: auto 2px Highlight;
+  /* for safari and chromium-based browsers */
+  outline: auto 1px -webkit-focus-ring-color;
+}
+
+.select {
+  position: absolute;
+  opacity: 0;
+}

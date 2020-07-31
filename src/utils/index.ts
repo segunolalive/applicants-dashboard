@@ -51,3 +51,10 @@ export const REQUEST_STATUSES = {
   SUCCESS: 'SUCCESS',
   ERROR: 'ERROR',
 }
+
+export const APPLICANT_STATUSES = {
+  Appointment_Set: 'Appointment set',
+  Property_Viewed: 'Property viewed',
+  Interested: 'Interested',
+  Offer_Accepted: 'Offer accepted',
+}

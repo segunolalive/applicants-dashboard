@@ -1,9 +1,11 @@
 import * as React from 'react'
 
-import Search from 'components/Search'
+import Search from 'components/SearchBox'
 import IconButton from 'components/IconButton'
+import Dropdown from 'components/Dropdown'
 
 import { IconType } from 'models/types'
+import { APPLICANT_STATUSES } from 'utils'
 
 import style from './applicant-filters.module.css'
 
@@ -20,9 +22,12 @@ export default function ApplicantFilters({ initialValue, searchFn }: Props) {
         <IconButton type={IconType.More} onClick={() => {}}>
           Bids
         </IconButton>
-        <IconButton type={IconType.More} onClick={() => {}}>
-          Status
-        </IconButton>
+        <Dropdown
+          defaultValue={'Status'}
+          options={APPLICANT_STATUSES}
+          selectFn={console.log}
+          transformFn={s => s.split('_').join(' ')}
+        />
       </div>
     </div>
   )

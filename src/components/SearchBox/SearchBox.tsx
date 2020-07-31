@@ -4,16 +4,17 @@ import SRText from 'components/SRText'
 
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg'
 
-import style from './search.module.css'
+import style from './search-box.module.css'
 
 type Props = {
   initialValue?: string
   searchFn: (text: string) => void
 }
-type submit = (event: React.FormEvent<HTMLInputElement>) => void
 
-export default function Search({ initialValue = '', searchFn }: Props) {
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+type changehandler = (event: React.ChangeEvent<HTMLInputElement>) => void
+
+export default function SearchBox({ initialValue = '', searchFn }: Props) {
+  const onChange: changehandler = (event) => {
     searchFn(event.target.value)
   }
 
