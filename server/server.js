@@ -1,4 +1,5 @@
 const http = require('http')
+const path = require('path')
 const express = require('express')
 
 const db = require('./db')
@@ -14,6 +15,8 @@ app.use(function (req, res, next) {
   )
   next()
 })
+
+app.use(express.static(path.join(path.dirname(__dirname), '/build')))
 
 app.get('/applicants', (req, res) => {
   let data = db
@@ -32,9 +35,8 @@ app.get('/applicants', (req, res) => {
   return setTimeout(() => res.status(200).send(data), timeout)
 })
 
-app.get('*', (req, res, next) => {
-  console.log('Not Found')
-  return res.status(404).send([]) // 404 Here
+app.get('/', function (req, res) {
+  res.sendFile(path.join(path.dirname(__dirname), 'build', 'index.html'))
 })
 
 app.use((err, req, res, next) => {

@@ -2,16 +2,14 @@ import * as React from 'react'
 
 import { REQUEST_STATUSES } from 'utils'
 
-const BASE_API_URL = process.env.REACT_APP_API_URL
-
 export function useApplicantData(searchText = '') {
   const [status, setStatus] = React.useState(REQUEST_STATUSES.IDLE)
   const [data, setData] = React.useState([])
   const abortRef: React.MutableRefObject<any> = React.useRef(null)
 
   const URL = searchText
-    ? `${BASE_API_URL}/applicants?search=${searchText}`
-    : `${BASE_API_URL}/applicants`
+    ? `/applicants?search=${searchText}`
+    : `/applicants`
 
   async function fetchApplicants(signal: any) {
     setStatus(REQUEST_STATUSES.LOADING)
